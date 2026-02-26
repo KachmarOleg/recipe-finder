@@ -1,10 +1,18 @@
 import React from "react";
-import Home from "./components/home/Home";
+import "./styles/general.css";
+import RecipesList from "./components/recipesList/RecipesList";
+import Header from "./components/header/Header";
+import SearchIngredients from "./components/searchIngredients/SearchIngredients";
 
 export default function App() {
   return (
     <>
-      <Home />
+      <div className="container">
+        <Header />
+
+        <SearchIngredients />
+        <RecipesList />
+      </div>
     </>
   );
 }
