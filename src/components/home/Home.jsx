@@ -1,7 +1,22 @@
-import React from "react";
+import React, { useMemo, useState } from "react";
 import "./../../styles/general.css";
+import { ingredients } from "../../data/ingredients";
 
 export default function Home() {
+  const [search, setSearch] = useState("");
+
+  const sortedIngredients = useMemo(() => {
+    return [...ingredients].sort((a, b) => a.name.localeCompare(b.name));
+  }, [ingredients]);
+
+  const filteredIngredients = sortedIngredients.filter((ingredient) =>
+    ingredient.name.toLowerCase().includes(search.toLowerCase()),
+  );
+
+  function handleSearchChange(event) {
+    setSearch(event.target.value);
+  }
+
   return (
     <>
       <div className="container">
@@ -15,22 +30,15 @@ export default function Home() {
             type="text"
             className="search-input"
             placeholder="Type an ingredient (e.g. carrot, onion, potato...)"
+            value={search}
+            onChange={handleSearchChange}
           />
 
-          <div className="tags">
-            <div className="tag">
-              Tomato <span>×</span>
-            </div>
-            <div className="tag">
-              Onion <span>×</span>
-            </div>
-            <div className="tag">
-              Garlic <span>×</span>
-            </div>
-            <div className="tag">
-              Pasta <span>×</span>
-            </div>
-          </div>
+          <ul className="ingredient-list">
+            {filteredIngredients.map((ingredient) => (
+              <li key={ingredient.id}>{ingredient.name}</li>
+            ))}
+          </ul>
         </div>
 
         <h2 className="section-title">Recipes for you</h2>
