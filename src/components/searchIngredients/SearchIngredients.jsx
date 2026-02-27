@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useRef } from "react";
 import { ingredients } from "../../data/ingredients";
+import TagsList from "../tagsList/TagsList";
 
 export default function SearchIngredients() {
   const [search, setSearch] = useState("");
@@ -51,22 +52,6 @@ export default function SearchIngredients() {
     hideListUI();
   }
 
-  function handleTagRemove(ingredientId, ingredientTitle) {
-    setSelectedIngredients(
-      selectedIngredients.filter((ingr) => {
-        return ingr.id !== ingredientId;
-      }),
-    );
-
-    setIngredientsList([
-      ...ingredientsList,
-      {
-        id: ingredientId,
-        name: ingredientTitle,
-      },
-    ]);
-  }
-
   return (
     <div className="search-section">
       <input
@@ -90,32 +75,11 @@ export default function SearchIngredients() {
         ))}
       </ul>
 
-      <div className="tags">
-        {selectedIngredients.map((ingredient) => (
-          <div className="tag" key={ingredient.id}>
-            {ingredient.name}{" "}
-            <button
-              onClick={() => handleTagRemove(ingredient.id, ingredient.name)}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="lucide lucide-x h-3.5 w-3.5"
-              >
-                <path d="M18 6 6 18"></path>
-                <path d="m6 6 12 12"></path>
-              </svg>
-            </button>
-          </div>
-        ))}
-      </div>
+      <TagsList
+        selectedIngredients={selectedIngredients}
+        setSelectedIngredients={setSelectedIngredients}
+        setIngredientsList={setIngredientsList}
+      />
     </div>
   );
 }
