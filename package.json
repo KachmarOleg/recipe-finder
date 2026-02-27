@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "name": "blank-react-template",
   "version": "1.0.0",
   "description": "",
@@ -15,5 +16,8 @@
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "vite": "^6.0.11"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^5.1.4"
   }
 }
