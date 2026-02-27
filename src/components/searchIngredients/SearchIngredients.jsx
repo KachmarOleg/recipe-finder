@@ -1,20 +1,13 @@
 import React, { useState, useMemo, useRef } from "react";
 import { ingredients } from "../../data/ingredients";
 import TagsList from "../tagsList/TagsList";
+import IngredientsList from "../ingredientsList/IngredientsList";
 
 export default function SearchIngredients() {
   const [search, setSearch] = useState("");
   const [ingredientsList, setIngredientsList] = useState(ingredients);
   const [selectedIngredients, setSelectedIngredients] = useState([]);
   const listUI = useRef();
-
-  const sortedIngredients = useMemo(() => {
-    return [...ingredientsList].sort((a, b) => a.name.localeCompare(b.name));
-  }, [ingredientsList]);
-
-  const filteredIngredients = sortedIngredients.filter((ingredient) =>
-    ingredient.name.toLowerCase().includes(search.toLowerCase()),
-  );
 
   function handleSearchChange(event) {
     setSearch(event.target.value);
@@ -34,24 +27,6 @@ export default function SearchIngredients() {
     hideListUI();
   }
 
-  function handleAddIngredient(id, title) {
-    setIngredientsList(
-      ingredientsList.filter((ingr) => {
-        return ingr.id !== id;
-      }),
-    );
-
-    setSelectedIngredients([
-      ...selectedIngredients,
-      {
-        id: id,
-        name: title,
-      },
-    ]);
-
-    hideListUI();
-  }
-
   return (
     <div className="search-section">
       <input
@@ -64,16 +39,15 @@ export default function SearchIngredients() {
         onBlur={handleSearchBlur}
       />
 
-      <ul className="ingredient-list" ref={listUI}>
-        {filteredIngredients.map((ingredient) => (
-          <li
-            key={ingredient.id}
-            onClick={(e) => handleAddIngredient(ingredient.id, ingredient.name)}
-          >
-            {ingredient.name}
-          </li>
-        ))}
-      </ul>
+      <IngredientsList
+        ref={listUI}
+        search={search}
+        ingredientsList={ingredientsList}
+        setIngredientsList={setIngredientsList}
+        selectedIngredients={selectedIngredients}
+        setSelectedIngredients={setSelectedIngredients}
+        hideListUI={hideListUI}
+      />
 
       <TagsList
         selectedIngredients={selectedIngredients}
