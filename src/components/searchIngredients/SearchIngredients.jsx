@@ -1,12 +1,14 @@
-import React, { useState, useMemo, useRef } from "react";
+import { useState, useRef } from "react";
 import { ingredients } from "../../data/ingredients";
 import TagsList from "../tagsList/TagsList";
 import IngredientsList from "../ingredientsList/IngredientsList";
 
-export default function SearchIngredients() {
+export default function SearchIngredients({
+  selectedIngredients,
+  setSelectedIngredients,
+}) {
   const [search, setSearch] = useState("");
   const [ingredientsList, setIngredientsList] = useState(ingredients);
-  const [selectedIngredients, setSelectedIngredients] = useState([]);
   const listUI = useRef();
 
   function handleSearchChange(event) {

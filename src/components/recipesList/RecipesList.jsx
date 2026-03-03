@@ -1,15 +1,19 @@
 import { useState } from "react";
 import { recipes } from "./../../data/recipes.js";
 
-export default function RecipesList() {
-  const [recipesList, setRecipesList] = useState(recipes);
+export default function RecipesList({ selectedIngredients }) {
+  const recipesFiltered = recipes.filter((recipe) => {
+    return selectedIngredients.some((ingredient) =>
+      recipe.ingredients.includes(ingredient.name),
+    );
+  });
 
   return (
     <>
       <h2 className="section-title">Recipes for you</h2>
 
       <div className="recipes-grid">
-        {recipesList.map((recipe) => {
+        {recipesFiltered.map((recipe) => {
           return (
             <div className="card">
               <div className="card-image">
