@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { recipes } from "./../../data/recipes.js";
 
 export default function RecipesList({ selectedIngredients }) {
@@ -7,6 +6,17 @@ export default function RecipesList({ selectedIngredients }) {
       recipe.ingredients.includes(ingredient.name),
     );
   });
+
+  function missingIngredients(recipe) {
+    const selectedNames = selectedIngredients.map((i) => i.name);
+    let ingredientsAmount =
+      recipe.ingredients.length -
+      recipe.ingredients.filter((ingredient) =>
+        selectedNames.includes(ingredient),
+      ).length;
+
+    return ingredientsAmount;
+  }
 
   return (
     <>
@@ -24,7 +34,23 @@ export default function RecipesList({ selectedIngredients }) {
               </div>
               <div className="card-content">
                 <h3>{recipe.name}</h3>
-                <p>1 ingredient missing</p>
+                {recipe.ingredients.map((ingredient) => (
+                  <p>{ingredient}</p>
+                ))}
+
+                <br />
+
+                <p
+                  style={
+                    missingIngredients(recipe) === 0
+                      ? { color: "green" }
+                      : { color: "#777" }
+                  }
+                >
+                  {missingIngredients(recipe) > 0
+                    ? "Missing ingredients: " + missingIngredients(recipe)
+                    : "You have all necessary ingredients"}
+                </p>
               </div>
             </div>
           );
