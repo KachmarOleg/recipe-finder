@@ -1,13 +1,24 @@
 export default function RecipeCard({ recipe, selectedIngredients }) {
-  function missingIngredients(recipe) {
+  function calculateRecipeMatch(recipe, mode = "missing") {
+    const totalIngredients = recipe.ingredients.length;
+    if (totalIngredients === 0) return 0;
+
     const selectedNames = selectedIngredients.map((i) => i.name);
-    let ingredientsAmount =
-      recipe.ingredients.length -
+
+    const ingredientsAmount =
+      totalIngredients -
       recipe.ingredients.filter((ingredient) =>
         selectedNames.includes(ingredient),
       ).length;
 
-    return ingredientsAmount;
+    if (mode === "missing") {
+      return ingredientsAmount;
+    } else {
+      const ingredientsPercent =
+        ((totalIngredients - ingredientsAmount) * 100) / totalIngredients;
+
+      return Math.trunc(ingredientsPercent);
+    }
   }
 
   return (
@@ -15,7 +26,7 @@ export default function RecipeCard({ recipe, selectedIngredients }) {
       <div className="card-image">
         <img src={recipe.image} alt={recipe.name} />
         <div className="badge" style={{ backgroundColor: "#3cab5a" }}>
-          90% match
+          {calculateRecipeMatch(recipe, "percent")}% match
         </div>
       </div>
       <div className="card-content">
@@ -28,13 +39,13 @@ export default function RecipeCard({ recipe, selectedIngredients }) {
 
         <p
           style={
-            missingIngredients(recipe) === 0
+            calculateRecipeMatch(recipe) === 0
               ? { color: "green" }
-              : { color: "#777" }
+              : { color: "#be6000" }
           }
         >
-          {missingIngredients(recipe) > 0
-            ? "Missing ingredients: " + missingIngredients(recipe)
+          {calculateRecipeMatch(recipe) > 0
+            ? "Missing ingredients: " + calculateRecipeMatch(recipe)
             : "You have all necessary ingredients"}
         </p>
       </div>
