@@ -32,7 +32,7 @@ export default function RecipesList({ selectedIngredients }) {
 
   return (
     <>
-      {recipesSorted.length > 0 && (
+      {recipesSorted.length > 0 ? (
         <>
           <h2 className="section-title">Recipes for you</h2>
 
@@ -51,6 +51,12 @@ export default function RecipesList({ selectedIngredients }) {
             })}
           </div>
         </>
+      ) : (
+        <div className="cta-msg">
+          <h2>
+            Select your available ingredients to see recipes you can cook.
+          </h2>
+        </div>
       )}
     </>
   );
