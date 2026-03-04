@@ -21,11 +21,30 @@ export default function RecipeCard({ recipe, selectedIngredients }) {
     }
   }
 
+  function getMatchColor(percent) {
+    if (percent >= 80) return "#3cab5a";
+    if (percent >= 45) return "#ebcf34";
+    return "#e74c3c";
+  }
+
   return (
-    <div className="card">
+    <div
+      className="card"
+      style={{
+        boxShadow:
+          calculateRecipeMatch(recipe) === 0 && "0 6px 18px rgb(0 255 6 / 35%)",
+      }}
+    >
       <div className="card-image">
         <img src={recipe.image} alt={recipe.name} />
-        <div className="badge" style={{ backgroundColor: "#3cab5a" }}>
+        <div
+          className="badge"
+          style={{
+            backgroundColor: getMatchColor(
+              calculateRecipeMatch(recipe, "percent"),
+            ),
+          }}
+        >
           {calculateRecipeMatch(recipe, "percent")}% match
         </div>
       </div>
@@ -37,17 +56,13 @@ export default function RecipeCard({ recipe, selectedIngredients }) {
 
         <br />
 
-        <p
-          style={
-            calculateRecipeMatch(recipe) === 0
-              ? { color: "green" }
-              : { color: "#be6000" }
-          }
-        >
-          {calculateRecipeMatch(recipe) > 0
-            ? "Missing ingredients: " + calculateRecipeMatch(recipe)
-            : "You have all necessary ingredients"}
-        </p>
+        {calculateRecipeMatch(recipe) > 0 ? (
+          <p style={{ color: "#be6000" }}>
+            Missing ingredients: {calculateRecipeMatch(recipe)}
+          </p>
+        ) : (
+          <p style={{ color: "#3cab5a" }}>You have all necessary ingredients</p>
+        )}
       </div>
     </div>
   );
