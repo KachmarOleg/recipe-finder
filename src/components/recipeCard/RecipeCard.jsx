@@ -1,5 +1,9 @@
-export default function RecipeCard({ recipe, selectedIngredients }) {
-  function calculateRecipeMatch(recipe, mode = "missing") {
+export default function RecipeCard({
+  recipe,
+  selectedIngredients,
+  getIngredientMatchPercent,
+}) {
+  function calculateRecipeMatch(recipe) {
     const totalIngredients = recipe.ingredients.length;
     if (totalIngredients === 0) return 0;
 
@@ -11,14 +15,7 @@ export default function RecipeCard({ recipe, selectedIngredients }) {
         selectedNames.includes(ingredient),
       ).length;
 
-    if (mode === "missing") {
-      return ingredientsAmount;
-    } else {
-      const ingredientsPercent =
-        ((totalIngredients - ingredientsAmount) * 100) / totalIngredients;
-
-      return Math.trunc(ingredientsPercent);
-    }
+    return ingredientsAmount;
   }
 
   function getMatchColor(percent) {
@@ -32,7 +29,8 @@ export default function RecipeCard({ recipe, selectedIngredients }) {
       className="card"
       style={{
         boxShadow:
-          calculateRecipeMatch(recipe) === 0 && "0 6px 18px rgb(0 255 6 / 35%)",
+          getIngredientMatchPercent(recipe) === 0 &&
+          "0 6px 18px rgb(0 255 6 / 35%)",
       }}
     >
       <div className="card-image">
@@ -40,12 +38,10 @@ export default function RecipeCard({ recipe, selectedIngredients }) {
         <div
           className="badge"
           style={{
-            backgroundColor: getMatchColor(
-              calculateRecipeMatch(recipe, "percent"),
-            ),
+            backgroundColor: getMatchColor(getIngredientMatchPercent(recipe)),
           }}
         >
-          {calculateRecipeMatch(recipe, "percent")}% match
+          {getIngredientMatchPercent(recipe)}% match
         </div>
       </div>
       <div className="card-content">
