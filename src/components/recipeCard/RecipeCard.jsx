@@ -3,7 +3,7 @@ export default function RecipeCard({
   selectedIngredients,
   getIngredientMatchPercent,
 }) {
-  function calculateRecipeMatch(recipe) {
+  function calculateMissingIngredients(recipe) {
     const totalIngredients = recipe.ingredients.length;
     if (totalIngredients === 0) return 0;
 
@@ -52,9 +52,9 @@ export default function RecipeCard({
 
         <br />
 
-        {calculateRecipeMatch(recipe) > 0 ? (
+        {calculateMissingIngredients(recipe) > 0 ? (
           <p style={{ color: "#be6000" }}>
-            Missing ingredients: {calculateRecipeMatch(recipe)}
+            Missing ingredients: {calculateMissingIngredients(recipe)}
           </p>
         ) : (
           <p style={{ color: "#3cab5a" }}>You have all necessary ingredients</p>
