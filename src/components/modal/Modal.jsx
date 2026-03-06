@@ -1,5 +1,6 @@
 import { createPortal } from "react-dom";
 import { useRef, useEffect } from "react";
+import classes from "./Modal.module.css";
 
 export default function Modal({ children, open, setModal }) {
   const dialog = useRef();
@@ -21,6 +22,7 @@ export default function Modal({ children, open, setModal }) {
   return createPortal(
     <dialog
       ref={dialog}
+      className={classes.dialog}
       onClick={handleBackdropClick}
       onClose={() => setModal(false)}
     >

@@ -1,3 +1,5 @@
+import classes from "./RecipeCard.module.css";
+
 export default function RecipeCard({
   recipe,
   selectedIngredients,
@@ -28,21 +30,25 @@ export default function RecipeCard({
 
   return (
     <div
-      className="card"
+      className={classes.card}
       onClick={() => {
         setActiveRecipe(recipe);
         setModal(true);
       }}
       style={{
         boxShadow:
-          getIngredientMatchPercent(recipe) === 0 &&
-          "0 6px 18px rgb(0 255 6 / 35%)",
+          getIngredientMatchPercent(recipe) === 100 &&
+          "rgb(0 255 6 / 25%) 0px 5px 15px 0",
       }}
     >
-      <div className="card-image">
-        <img src={recipe.image} alt={recipe.name} />
+      <div className={classes.cardImageWrapper}>
+        <img
+          className={classes.cardImage}
+          src={recipe.image}
+          alt={recipe.name}
+        />
         <div
-          className="badge"
+          className={classes.badge}
           style={{
             backgroundColor: getMatchColor(getIngredientMatchPercent(recipe)),
           }}
@@ -50,20 +56,24 @@ export default function RecipeCard({
           {getIngredientMatchPercent(recipe)}% match
         </div>
       </div>
-      <div className="card-content">
-        <h3>{recipe.name}</h3>
+      <div className={classes.cardContent}>
+        <h3 className={classes.cardTitle}>{recipe.name}</h3>
         {recipe.ingredients.map((ingredient) => (
-          <p key={ingredient}>{ingredient}</p>
+          <p className={classes.cardText} key={ingredient}>
+            {ingredient}
+          </p>
         ))}
 
         <br />
 
         {calculateMissingIngredients(recipe) > 0 ? (
-          <p style={{ color: "#be6000" }}>
+          <p className={classes.cardText} style={{ color: "#be6000" }}>
             Missing ingredients: {calculateMissingIngredients(recipe)}
           </p>
         ) : (
-          <p style={{ color: "#3cab5a" }}>You have all necessary ingredients</p>
+          <p className={classes.cardText} style={{ color: "#3cab5a" }}>
+            You have all necessary ingredients
+          </p>
         )}
       </div>
     </div>

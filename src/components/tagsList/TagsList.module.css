@@ -1,0 +1,48 @@
+.tags {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tag {
+  background: #f9d8c7;
+  color: #b3471f;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 15px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tagSpan {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.tagButton {
+  background: none;
+  border: none;
+  color: #b3471f;
+  cursor: pointer;
+  font-size: 13px;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+}
+
+.tagButton:hover {
+  svg {
+    background-color: #e6a388;
+  }
+}
+
+.tagButton svg {
+  width: 14px;
+  height: 14px;
+  padding: 1px;
+  background: #f4efe9;
+  border-radius: 50%;
+  transition: 0.2s;
+}

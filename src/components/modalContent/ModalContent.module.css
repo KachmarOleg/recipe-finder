@@ -1,0 +1,13 @@
+.closeBtn {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  background: #f4efe9;
+  border: none;
+  border-radius: 50%;
+}

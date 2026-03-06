@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import classes from "./IngredientsList.module.css";
 
 export default function IngredientsList({
   ref,
@@ -37,10 +38,11 @@ export default function IngredientsList({
 
   return (
     <>
-      <ul className="ingredient-list" ref={ref}>
+      <ul className={classes.ingredientsList} ref={ref}>
         {filteredIngredients.map((ingredient) => (
           <li
             key={ingredient.id}
+            className={classes.ingredientItem}
             onClick={(e) => handleAddIngredient(ingredient.id, ingredient.name)}
           >
             {ingredient.name}

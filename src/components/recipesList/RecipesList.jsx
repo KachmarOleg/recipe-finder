@@ -3,6 +3,7 @@ import { recipes } from "./../../data/recipes.js";
 import RecipeCard from "../recipeCard/RecipeCard.jsx";
 import Modal from "../modal/Modal";
 import ModalContent from "../modalContent/ModalContent.jsx";
+import classes from "./RecipesList.module.css";
 
 export default function RecipesList({ selectedIngredients }) {
   function getIngredientMatchPercent(recipe) {
@@ -40,9 +41,9 @@ export default function RecipesList({ selectedIngredients }) {
     <>
       {recipesSorted.length > 0 ? (
         <>
-          <h2 className="section-title">Recipes for you</h2>
+          <h2 className={classes.recipesTitle}>Recipes for you</h2>
 
-          <div className="recipes-grid">
+          <div className={classes.recipesGrid}>
             {recipesSorted.map((recipe) => {
               return (
                 <>

@@ -1,4 +1,4 @@
-import React from "react";
+import classes from "./TagsList.module.css";
 
 export default function TagsList({
   selectedIngredients,
@@ -20,10 +20,11 @@ export default function TagsList({
   }
 
   return (
-    <div className="tags">
+    <div className={classes.tags}>
       {selectedIngredients.map((ingredient) => (
-        <div className="tag" key={ingredient.id}>
+        <div className={classes.tag} key={ingredient.id}>
           <button
+            className={classes.tagButton}
             onClick={() => handleTagRemove(ingredient.id, ingredient.name)}
           >
             <svg

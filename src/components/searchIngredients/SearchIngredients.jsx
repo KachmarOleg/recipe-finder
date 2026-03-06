@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import { ingredients } from "../../data/ingredients";
 import TagsList from "../tagsList/TagsList";
 import IngredientsList from "../ingredientsList/IngredientsList";
+import classes from "./SearchIngredients.module.css";
 
 export default function SearchIngredients({
   selectedIngredients,
@@ -30,10 +31,10 @@ export default function SearchIngredients({
   }
 
   return (
-    <div className="search-section">
+    <div className={classes.searchSection}>
       <input
         type="text"
-        className="search-input"
+        className={classes.searchInput}
         placeholder="Type an ingredient (e.g. carrot, onion, potato...)"
         value={search}
         onChange={handleSearchChange}
