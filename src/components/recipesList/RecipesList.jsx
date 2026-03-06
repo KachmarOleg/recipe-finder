@@ -1,5 +1,8 @@
-import RecipeCard from "../recipeCard/RecipeCard.jsx";
+import { useState } from "react";
 import { recipes } from "./../../data/recipes.js";
+import RecipeCard from "../recipeCard/RecipeCard.jsx";
+import Modal from "../modal/Modal";
+import ModalContent from "../modalContent/ModalContent.jsx";
 
 export default function RecipesList({ selectedIngredients }) {
   function getIngredientMatchPercent(recipe) {
@@ -20,6 +23,9 @@ export default function RecipesList({ selectedIngredients }) {
     return Math.trunc(ingredientsPercent);
   }
 
+  const [modal, setModal] = useState(false);
+  const [activeRecipe, setActiveRecipe] = useState(null);
+
   const recipesFiltered = recipes.filter((recipe) => {
     return selectedIngredients.some((ingredient) =>
       recipe.ingredients.includes(ingredient.name),
@@ -39,16 +45,26 @@ export default function RecipesList({ selectedIngredients }) {
           <div className="recipes-grid">
             {recipesSorted.map((recipe) => {
               return (
-                <RecipeCard
-                  key={recipe.id}
-                  recipe={recipe}
-                  selectedIngredients={selectedIngredients}
-                  getIngredientMatchPercent={() =>
-                    getIngredientMatchPercent(recipe)
-                  }
-                />
+                <>
+                  <RecipeCard
+                    key={recipe.id}
+                    recipe={recipe}
+                    selectedIngredients={selectedIngredients}
+                    getIngredientMatchPercent={() =>
+                      getIngredientMatchPercent(recipe)
+                    }
+                    setModal={setModal}
+                    setActiveRecipe={setActiveRecipe}
+                  />
+                </>
               );
             })}
+
+            {activeRecipe !== null && (
+              <Modal open={modal} setModal={setModal}>
+                <ModalContent recipe={activeRecipe} setModal={setModal} />
+              </Modal>
+            )}
           </div>
         </>
       ) : (

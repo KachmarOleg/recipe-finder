@@ -2,6 +2,8 @@ export default function RecipeCard({
   recipe,
   selectedIngredients,
   getIngredientMatchPercent,
+  setActiveRecipe,
+  setModal,
 }) {
   function calculateMissingIngredients(recipe) {
     const totalIngredients = recipe.ingredients.length;
@@ -27,6 +29,10 @@ export default function RecipeCard({
   return (
     <div
       className="card"
+      onClick={() => {
+        setActiveRecipe(recipe);
+        setModal(true);
+      }}
       style={{
         boxShadow:
           getIngredientMatchPercent(recipe) === 0 &&

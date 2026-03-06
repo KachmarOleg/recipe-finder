@@ -206,6 +206,15 @@ body {
   color: #6e625c;
 }
 
+dialog {
+  width: 40vw;
+  margin: auto;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  z-index: 100;
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 992px) {
   .recipes-grid {
