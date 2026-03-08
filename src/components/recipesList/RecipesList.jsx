@@ -3,7 +3,7 @@ import { recipes } from "./../../data/recipes.js";
 import RecipeCard from "../recipeCard/RecipeCard.jsx";
 import Modal from "../modal/Modal";
 import ModalContent from "../modalContent/ModalContent.jsx";
-import classes from "./RecipesList.module.css";
+import classes from "./RecipesList.module.scss";
 
 export default function RecipesList({ selectedIngredients }) {
   function getIngredientMatchPercent(recipe) {

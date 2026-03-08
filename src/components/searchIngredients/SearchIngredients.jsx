@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import { ingredients } from "../../data/ingredients";
 import TagsList from "../tagsList/TagsList";
 import IngredientsList from "../ingredientsList/IngredientsList";
-import classes from "./SearchIngredients.module.css";
+import classes from "./SearchIngredients.module.scss";
 
 export default function SearchIngredients({
   selectedIngredients,

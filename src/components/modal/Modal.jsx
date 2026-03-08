@@ -1,6 +1,6 @@
 import { createPortal } from "react-dom";
 import { useRef, useEffect } from "react";
-import classes from "./Modal.module.css";
+import classes from "./Modal.module.scss";
 
 export default function Modal({ children, open, setModal }) {
   const dialog = useRef();

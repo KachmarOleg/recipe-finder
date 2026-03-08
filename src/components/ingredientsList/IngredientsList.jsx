@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import classes from "./IngredientsList.module.css";
+import classes from "./IngredientsList.module.scss";
 
 export default function IngredientsList({
   ref,

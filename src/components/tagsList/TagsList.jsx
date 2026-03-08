@@ -1,4 +1,4 @@
-import classes from "./TagsList.module.css";
+import classes from "./TagsList.module.scss";
 
 export default function TagsList({
   selectedIngredients,

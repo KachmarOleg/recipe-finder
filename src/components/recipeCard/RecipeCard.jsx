@@ -1,4 +1,4 @@
-import classes from "./RecipeCard.module.css";
+import classes from "./RecipeCard.module.scss";
 
 export default function RecipeCard({
   recipe,
@@ -59,21 +59,17 @@ export default function RecipeCard({
       <div className={classes.cardContent}>
         <h3 className={classes.cardTitle}>{recipe.name}</h3>
         {recipe.ingredients.map((ingredient) => (
-          <p className={classes.cardText} key={ingredient}>
-            {ingredient}
-          </p>
+          <p key={ingredient}>{ingredient}</p>
         ))}
 
         <br />
 
         {calculateMissingIngredients(recipe) > 0 ? (
-          <p className={classes.cardText} style={{ color: "#be6000" }}>
+          <p style={{ color: "#be6000" }}>
             Missing ingredients: {calculateMissingIngredients(recipe)}
           </p>
         ) : (
-          <p className={classes.cardText} style={{ color: "#3cab5a" }}>
-            You have all necessary ingredients
-          </p>
+          <p style={{ color: "#3cab5a" }}>You have all necessary ingredients</p>
         )}
       </div>
     </div>

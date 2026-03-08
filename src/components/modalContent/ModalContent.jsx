@@ -1,4 +1,4 @@
-import classes from "./ModalContent.module.css";
+import classes from "./ModalContent.module.scss";
 
 export default function ModalCard({ recipe, setModal }) {
   return (

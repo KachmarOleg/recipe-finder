@@ -4,12 +4,12 @@
   overflow: hidden;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
   transition: 0.3s ease;
-}
 
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
-  cursor: pointer;
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+    cursor: pointer;
+  }
 }
 
 .cardImageWrapper {
@@ -37,14 +37,14 @@
 
 .cardContent {
   padding: 16px;
-}
 
-.cardTitle {
-  font-size: 20px;
-  margin-bottom: 6px;
-}
+  .cardTitle {
+    font-size: 20px;
+    margin-bottom: 6px;
+  }
 
-.cardText {
-  font-size: 14px;
-  color: #777;
+  p {
+    font-size: 14px;
+    color: #777;
+  }
 }
