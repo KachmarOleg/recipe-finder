@@ -7,10 +7,16 @@
   align-items: center;
   width: 30px;
   height: 30px;
+  padding: 5px;
   background: #f4efe9;
   border: none;
   border-radius: 50%;
   cursor: pointer;
+  transition: 0.3s ease;
+
+  &:hover {
+    background-color: #cbcbcb;
+  }
 }
 
 .modalContent {
