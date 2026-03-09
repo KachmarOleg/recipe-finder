@@ -37,27 +37,33 @@ export default function RecipesList({ selectedIngredients }) {
     return getIngredientMatchPercent(b) - getIngredientMatchPercent(a);
   });
 
+  const recipesWholeList = [...recipes].sort((a, b) =>
+    a.name.localeCompare(b.name),
+  );
+
   return (
     <>
-      {recipesSorted.length > 0 ? (
+      {selectedIngredients.length > 0 ? (
         <>
-          <h2 className={classes.recipesTitle}>Recipes for you</h2>
+          <h2 className={classes.recipesTitle}>
+            {recipesSorted.length > 0
+              ? "Recipes You Can Make"
+              : "No recipes match your ingredients"}
+          </h2>
 
           <div className={classes.recipesGrid}>
             {recipesSorted.map((recipe) => {
               return (
-                <>
-                  <RecipeCard
-                    key={recipe.id}
-                    recipe={recipe}
-                    selectedIngredients={selectedIngredients}
-                    getIngredientMatchPercent={() =>
-                      getIngredientMatchPercent(recipe)
-                    }
-                    setModal={setModal}
-                    setActiveRecipe={setActiveRecipe}
-                  />
-                </>
+                <RecipeCard
+                  key={recipe.id}
+                  recipe={recipe}
+                  selectedIngredients={selectedIngredients}
+                  getIngredientMatchPercent={() =>
+                    getIngredientMatchPercent(recipe)
+                  }
+                  setModal={setModal}
+                  setActiveRecipe={setActiveRecipe}
+                />
               );
             })}
 
@@ -73,11 +79,38 @@ export default function RecipesList({ selectedIngredients }) {
           </div>
         </>
       ) : (
-        <div className={classes.ctaMsg}>
-          <h2>
-            Select your available ingredients to see recipes you can cook.
-          </h2>
-        </div>
+        <>
+          <h2 className={classes.recipesTitle}>All Recipes</h2>
+
+          <div className={classes.recipesGrid}>
+            {recipesWholeList.map((recipe) => {
+              return (
+                <RecipeCard
+                  key={recipe.id}
+                  recipe={recipe}
+                  matchInfo={false}
+                  selectedIngredients={selectedIngredients}
+                  getIngredientMatchPercent={() =>
+                    getIngredientMatchPercent(recipe)
+                  }
+                  setModal={setModal}
+                  setActiveRecipe={setActiveRecipe}
+                />
+              );
+            })}
+
+            {activeRecipe !== null && (
+              <Modal open={modal} setModal={setModal}>
+                <ModalContent
+                  recipe={activeRecipe}
+                  matchInfo={false}
+                  setModal={setModal}
+                  selectedIngredients={selectedIngredients}
+                />
+              </Modal>
+            )}
+          </div>
+        </>
       )}
     </>
   );

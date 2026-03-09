@@ -35,7 +35,7 @@ export default function SearchIngredients({
       <input
         type="text"
         className={classes.searchInput}
-        placeholder="Type an ingredient (e.g. carrot, onion, potato...)"
+        placeholder="Type an ingredient (e.g. potato, salt, tomato...)"
         value={search}
         onChange={handleSearchChange}
         onFocus={handleSearchFocus}

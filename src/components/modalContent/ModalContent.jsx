@@ -3,24 +3,35 @@ import CloseIcon from "../../icons/CloseIcon";
 import InfoIcon from "../../icons/InfoIcon";
 import classes from "./ModalContent.module.scss";
 
-export default function ModalCard({ recipe, setModal, selectedIngredients }) {
+export default function ModalCard({
+  recipe,
+  matchInfo,
+  setModal,
+  selectedIngredients,
+}) {
   const selectedNames = selectedIngredients.map((i) => i.name);
 
   const recipeIngredients = recipe.ingredients.map((ingredient) => {
-    if (selectedNames.includes(ingredient)) {
+    if (selectedNames.includes(ingredient) && !matchInfo) {
       return (
-        <li style={{ color: "#2cb879" }}>
+        <li key={ingredient} style={{ color: "#2cb879" }}>
           <CheckIcon size={16} />
           {ingredient}
         </li>
       );
-    } else {
+    } else if (
+      !selectedNames.includes(ingredient) &&
+      selectedNames.length > 0 &&
+      !matchInfo
+    ) {
       return (
-        <li style={{ color: "#e74c3c" }}>
+        <li key={ingredient} style={{ color: "#e74c3c" }}>
           <InfoIcon size={16} color={"#e74c3c"} />
           {ingredient}
         </li>
       );
+    } else {
+      return <li key={ingredient}>{ingredient}</li>;
     }
   });
 

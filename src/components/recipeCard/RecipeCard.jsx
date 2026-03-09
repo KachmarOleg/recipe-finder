@@ -2,6 +2,7 @@ import classes from "./RecipeCard.module.scss";
 
 export default function RecipeCard({
   recipe,
+  matchInfo = true,
   selectedIngredients,
   getIngredientMatchPercent,
   setActiveRecipe,
@@ -47,24 +48,33 @@ export default function RecipeCard({
           src={recipe.image}
           alt={recipe.name}
         />
-        <div
-          className={classes.badge}
-          style={{
-            backgroundColor: getMatchColor(getIngredientMatchPercent(recipe)),
-          }}
-        >
-          {getIngredientMatchPercent(recipe)}% match
-        </div>
+
+        {matchInfo && (
+          <div
+            className={classes.badge}
+            style={{
+              backgroundColor: getMatchColor(getIngredientMatchPercent(recipe)),
+            }}
+          >
+            {getIngredientMatchPercent(recipe)}% match
+          </div>
+        )}
       </div>
       <div className={classes.cardContent}>
         <h3 className={classes.cardTitle}>{recipe.name}</h3>
 
-        {calculateMissingIngredients(recipe) > 0 ? (
-          <p style={{ color: "#be6000" }}>
-            Missing ingredients: {calculateMissingIngredients(recipe)}
-          </p>
-        ) : (
-          <p style={{ color: "#3cab5a" }}>You have all necessary ingredients</p>
+        {matchInfo && (
+          <>
+            {calculateMissingIngredients(recipe) > 0 ? (
+              <p style={{ color: "#be6000" }}>
+                Missing ingredients: {calculateMissingIngredients(recipe)}
+              </p>
+            ) : (
+              <p style={{ color: "#3cab5a" }}>
+                You have all necessary ingredients
+              </p>
+            )}
+          </>
         )}
       </div>
     </div>
