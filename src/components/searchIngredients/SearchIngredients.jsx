@@ -3,6 +3,7 @@ import { ingredients } from "../../data/ingredients";
 import TagsList from "../tagsList/TagsList";
 import IngredientsList from "../ingredientsList/IngredientsList";
 import classes from "./SearchIngredients.module.scss";
+import SearchInput from "../searchInput/SearchInput";
 
 export default function SearchIngredients({
   selectedIngredients,
@@ -12,34 +13,19 @@ export default function SearchIngredients({
   const [ingredientsList, setIngredientsList] = useState(ingredients);
   const listUI = useRef();
 
-  function handleSearchChange(event) {
-    setSearch(event.target.value);
-  }
-
-  function handleSearchFocus() {
-    listUI.current.style.display = "flex";
-  }
-
   function hideListUI() {
     setTimeout(() => {
       listUI.current.style.display = "none";
     }, 100);
   }
 
-  function handleSearchBlur() {
-    hideListUI();
-  }
-
   return (
     <div className={classes.searchSection}>
-      <input
-        type="text"
-        className={classes.searchInput}
-        placeholder="Type an ingredient (e.g. potato, salt, tomato...)"
-        value={search}
-        onChange={handleSearchChange}
-        onFocus={handleSearchFocus}
-        onBlur={handleSearchBlur}
+      <SearchInput
+        search={search}
+        setSearch={setSearch}
+        listUI={listUI}
+        hideListUI={hideListUI}
       />
 
       <IngredientsList

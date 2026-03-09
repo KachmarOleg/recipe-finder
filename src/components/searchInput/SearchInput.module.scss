@@ -1,0 +1,29 @@
+.searchInput {
+  width: 100%;
+  padding: 16px 20px;
+  border-radius: 40px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+  outline: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.searchWrapper {
+  position: relative;
+
+  .clearSearch {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 20px;
+    padding: 5px;
+    border-radius: 50%;
+    padding: 5px;
+    background: #f4efe9;
+    color: #b3471f;
+
+    &:hover {
+      background-color: #e6a388;
+    }
+  }
+}

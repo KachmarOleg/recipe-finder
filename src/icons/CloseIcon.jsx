@@ -1,7 +1,8 @@
-export default function CloseIcon({ size = 14 }) {
+export default function CloseIcon({ size = 14, classes }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
+      className={classes}
       width={size}
       height={size}
       viewBox="0 0 24 24"
@@ -10,7 +11,6 @@ export default function CloseIcon({ size = 14 }) {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className="lucide lucide-x h-3.5 w-3.5"
     >
       <path d="M18 6 6 18"></path>
       <path d="m6 6 12 12"></path>
