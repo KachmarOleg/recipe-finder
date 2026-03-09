@@ -12,7 +12,7 @@ export default function ModalCard({
   const selectedNames = selectedIngredients.map((i) => i.name);
 
   const recipeIngredients = recipe.ingredients.map((ingredient) => {
-    if (selectedNames.includes(ingredient) && !matchInfo) {
+    if (selectedNames.includes(ingredient) && matchInfo) {
       return (
         <li key={ingredient} style={{ color: "#2cb879" }}>
           <CheckIcon size={16} />
@@ -22,7 +22,7 @@ export default function ModalCard({
     } else if (
       !selectedNames.includes(ingredient) &&
       selectedNames.length > 0 &&
-      !matchInfo
+      matchInfo
     ) {
       return (
         <li key={ingredient} style={{ color: "#e74c3c" }}>
