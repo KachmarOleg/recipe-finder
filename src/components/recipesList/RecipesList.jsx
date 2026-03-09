@@ -41,77 +41,53 @@ export default function RecipesList({ selectedIngredients }) {
     a.name.localeCompare(b.name),
   );
 
+  let title = "";
+  const hasSelectedIngredients = selectedIngredients.length > 0;
+  if (hasSelectedIngredients && recipesSorted.length > 0) {
+    title = "Recipes You Can Make";
+  } else if (hasSelectedIngredients && recipesSorted.length <= 0) {
+    title = "No recipes match your ingredients";
+  } else {
+    title = "All Recipes";
+  }
+
+  const recipesToRender = hasSelectedIngredients
+    ? recipesSorted
+    : recipesWholeList;
+  const matchInfo = hasSelectedIngredients && recipesSorted.length > 0;
+
   return (
     <>
-      {selectedIngredients.length > 0 ? (
-        <>
-          <h2 className={classes.recipesTitle}>
-            {recipesSorted.length > 0
-              ? "Recipes You Can Make"
-              : "No recipes match your ingredients"}
-          </h2>
+      <h2 className={classes.recipesTitle}>{title}</h2>
 
-          <div className={classes.recipesGrid}>
-            {recipesSorted.map((recipe) => {
-              return (
-                <RecipeCard
-                  key={recipe.id}
-                  recipe={recipe}
-                  selectedIngredients={selectedIngredients}
-                  getIngredientMatchPercent={() =>
-                    getIngredientMatchPercent(recipe)
-                  }
-                  setModal={setModal}
-                  setActiveRecipe={setActiveRecipe}
-                />
-              );
-            })}
+      <div className={classes.recipesGrid}>
+        {recipesToRender.map((recipe) => {
+          return (
+            <RecipeCard
+              key={recipe.id}
+              recipe={recipe}
+              selectedIngredients={selectedIngredients}
+              getIngredientMatchPercent={() =>
+                getIngredientMatchPercent(recipe)
+              }
+              setModal={setModal}
+              setActiveRecipe={setActiveRecipe}
+              matchInfo={matchInfo}
+            />
+          );
+        })}
 
-            {activeRecipe !== null && (
-              <Modal open={modal} setModal={setModal}>
-                <ModalContent
-                  recipe={activeRecipe}
-                  setModal={setModal}
-                  selectedIngredients={selectedIngredients}
-                />
-              </Modal>
-            )}
-          </div>
-        </>
-      ) : (
-        <>
-          <h2 className={classes.recipesTitle}>All Recipes</h2>
-
-          <div className={classes.recipesGrid}>
-            {recipesWholeList.map((recipe) => {
-              return (
-                <RecipeCard
-                  key={recipe.id}
-                  recipe={recipe}
-                  matchInfo={false}
-                  selectedIngredients={selectedIngredients}
-                  getIngredientMatchPercent={() =>
-                    getIngredientMatchPercent(recipe)
-                  }
-                  setModal={setModal}
-                  setActiveRecipe={setActiveRecipe}
-                />
-              );
-            })}
-
-            {activeRecipe !== null && (
-              <Modal open={modal} setModal={setModal}>
-                <ModalContent
-                  recipe={activeRecipe}
-                  matchInfo={false}
-                  setModal={setModal}
-                  selectedIngredients={selectedIngredients}
-                />
-              </Modal>
-            )}
-          </div>
-        </>
-      )}
+        {activeRecipe !== null && (
+          <Modal open={modal} setModal={setModal}>
+            <ModalContent
+              recipe={activeRecipe}
+              setModal={setModal}
+              selectedIngredients={selectedIngredients}
+              matchInfo={matchInfo}
+            />
+          </Modal>
+        )}
+      </div>
     </>
   );
 }
