@@ -12,7 +12,8 @@ export const recipes = [
     name: "Avocado Salad",
     ingredients: ["Avocado", "Tomato", "Onion", "Olive Oil", "Salt"],
     image: "/images/recipe-2.jpg",
-    instruction: "Chop avocado and vegetables. Mix with olive oil and salt.",
+    instruction:
+      "Chop avocado and vegetables. Mix with olive oil and salt. Chop avocado and vegetables. Mix with olive oil and salt.Chop avocado and vegetables. Mix with olive oil and salt.Chop avocado and vegetables. Mix with olive oil and salt.Chop avocado and vegetables. Mix with olive oil and salt.Chop avocado and vegetables. Mix with olive oil and salt.Chop avocado and vegetables. Mix with olive oil and salt.Chop avocado and vegetables. Mix with olive oil and salt.Chop avocado and vegetables. Mix with olive oil and salt.Chop avocado and vegetables. Mix with olive oil and salt.Chop avocado and vegetables. Mix with olive oil and salt.Chop avocado and vegetables. Mix with olive oil and salt.Chop avocado and vegetables. Mix with olive oil and salt.Chop avocado and vegetables. Mix with olive oil and salt.Chop avocado and vegetables. Mix with olive oil and salt.Chop avocado and vegetables. Mix with olive oil and salt.Chop avocado and vegetables. Mix with olive oil and salt.Chop avocado and vegetables. Mix with olive oil and salt.Chop avocado and vegetables. Mix with olive oil and salt.Chop avocado and vegetables. Mix with olive oil and salt.Chop avocado and vegetables. Mix with olive oil and salt.Chop avocado and vegetables. Mix with olive oil and salt.Chop avocado and vegetables. Mix with olive oil and salt.Chop avocado and vegetables. Mix with olive oil and salt.  vegetables. Mix with olive oil and salt.Chop avocado and vegetables. Mix with olive oil and salt.Chop avocado and vegetables. Mix with olive oil and salt.Chop avocado and vegetables. Mix with olive oil and salt. ",
   },
   {
     id: 3,

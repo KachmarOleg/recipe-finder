@@ -63,13 +63,17 @@ export default function RecipesList({ selectedIngredients }) {
 
             {activeRecipe !== null && (
               <Modal open={modal} setModal={setModal}>
-                <ModalContent recipe={activeRecipe} setModal={setModal} />
+                <ModalContent
+                  recipe={activeRecipe}
+                  setModal={setModal}
+                  selectedIngredients={selectedIngredients}
+                />
               </Modal>
             )}
           </div>
         </>
       ) : (
-        <div className="cta-msg">
+        <div className={classes.ctaMsg}>
           <h2>
             Select your available ingredients to see recipes you can cook.
           </h2>

@@ -12,3 +12,47 @@
   border-radius: 50%;
   cursor: pointer;
 }
+
+.modalContent {
+  figure {
+    height: 18rem;
+    width: 100%;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .recipeContent {
+    padding: 2rem;
+    max-height: 60vh;
+    overflow: auto;
+
+    h2 {
+      margin-bottom: 2rem;
+    }
+
+    h3 {
+      margin-bottom: 0.5rem;
+    }
+
+    .recipeIngredients {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      margin-bottom: 2rem;
+
+      li {
+        display: flex;
+        align-items: center;
+      }
+
+      svg {
+        margin-right: 5px;
+      }
+    }
+  }
+}

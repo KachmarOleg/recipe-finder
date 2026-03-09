@@ -58,11 +58,6 @@ export default function RecipeCard({
       </div>
       <div className={classes.cardContent}>
         <h3 className={classes.cardTitle}>{recipe.name}</h3>
-        {recipe.ingredients.map((ingredient) => (
-          <p key={ingredient}>{ingredient}</p>
-        ))}
-
-        <br />
 
         {calculateMissingIngredients(recipe) > 0 ? (
           <p style={{ color: "#be6000" }}>

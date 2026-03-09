@@ -17,21 +17,3 @@ body {
   margin: 0 auto;
   padding: 40px 20px 80px;
 }
-
-.cta-msg {
-  height: 40vh;
-  border-radius: 40px;
-  border: 1px solid #ddd;
-  background: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 16px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-
-.cta-msg h2 {
-  color: #6e625c;
-}
-
-/* ===== RESPONSIVE ===== */

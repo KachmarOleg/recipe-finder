@@ -1,8 +1,30 @@
+import CheckIcon from "../../icons/checkIcon";
+import InfoIcon from "../../icons/InfoIcon";
 import classes from "./ModalContent.module.scss";
 
-export default function ModalCard({ recipe, setModal }) {
+export default function ModalCard({ recipe, setModal, selectedIngredients }) {
+  const selectedNames = selectedIngredients.map((i) => i.name);
+
+  const recipeIngredients = recipe.ingredients.map((ingredient) => {
+    if (selectedNames.includes(ingredient)) {
+      return (
+        <li style={{ color: "#2cb879" }}>
+          <CheckIcon size={16} />
+          {ingredient}
+        </li>
+      );
+    } else {
+      return (
+        <li style={{ color: "#e74c3c" }}>
+          <InfoIcon size={16} color={"#e74c3c"} />
+          {ingredient}
+        </li>
+      );
+    }
+  });
+
   return (
-    <>
+    <div className={classes.modalContent}>
       <button
         className={classes.closeBtn}
         onClick={(e) => {
@@ -31,14 +53,15 @@ export default function ModalCard({ recipe, setModal }) {
         <img src={recipe.image} alt={recipe.name} />
       </figure>
 
-      <h3>{recipe.name}</h3>
-      <ul>
-        {recipe.ingredients.map((ingredient) => (
-          <li key={ingredient}>{ingredient}</li>
-        ))}
-      </ul>
+      <div className={classes.recipeContent}>
+        <h2>{recipe.name}</h2>
 
-      <p>{recipe.instruction}</p>
-    </>
+        <h3>Ingredients</h3>
+        <ul className={classes.recipeIngredients}>{recipeIngredients}</ul>
+
+        <h3>Instructions</h3>
+        <p>{recipe.instruction}</p>
+      </div>
+    </div>
   );
 }

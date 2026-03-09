@@ -16,3 +16,19 @@
     grid-template-columns: 1fr;
   }
 }
+
+.ctaMsg {
+  height: 40vh;
+  border-radius: 40px;
+  border: 1px solid #ddd;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+
+  h2 {
+    color: #6e625c;
+  }
+}
